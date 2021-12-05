@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2D Human Model ver.2</title>
+    <script src="../lib/p5.js"></script>
+</head>
+<body>
+    <button onclick="go_back()">Go Back</button>
+
+    <script>
+        function go_back() {
+            window.history.back();
+        }
+    </script>
+    
+    <script>
+        function setup() {
+            createCanvas(1366, 768, WEBGL);
+        }
+
+        function draw() {
+            background(240);
+
+            // rectMode(CENTER); // <- Use rect(x,y,*,*) instead
+            noStroke();
+            // Shadow (Outer Outline)
+                // Head
+                fill(0, 0, 0);
+                ellipse(0, -310, 110, 110);
+
+                // Neck
+                rect(-25, -270, 50, 20);
+
+                // Torso + Arms
+                rect(-112, -255, 224, 190);
+
+                // Left Hand
+                ellipse(-84, -60, 60, 60);
+
+                // Right Hand
+                ellipse(84, -60, 60, 60);
+
+                // Waist + Legs
+                rect(-67, -100, 134, 200);
+            
+            // Body (Drawing)
+                // Torso
+                fill(255, 50, 255);
+                rect(-62, -250, 124, 150);
+
+                // Neck
+                fill(255, 255, 50);
+                rect(-20, -270, 40, 20);
+
+                // Head
+                fill(50, 255, 255);
+                ellipse(0, -310, 100, 100);
+
+                // Left Arm 
+                fill(50, 255, 255);
+                rect(-107,-250, 45, 90);
+
+                // Left Forearm
+                fill(255, 255, 50);
+                rect(-107, -160, 45, 90);
+
+                // Right Arm
+                fill(50, 255, 255);
+                rect(62,-250, 45, 90);
+
+                // Right Forearm
+                fill(255, 255, 50);
+                rect(62, -160, 45, 90);
+
+                // Left Leg
+                fill(255, 50, 255);
+                rect(-62, -85, 62, 90);
+
+                // Left Foreleg
+                fill(255, 255, 50);
+                rect(-62, 5, 62, 90);
+
+                // Right Leg
+                fill(255, 50, 255);
+                rect(0, -85, 62, 90);
+
+                // Right Foreleg
+                fill(255, 255, 50);
+                rect(0, 5, 62, 90);
+
+                // Waist
+                fill(50, 255, 255);
+                rect(-62, -100, 124, 15);
+                triangle(62, -85, -62, -85, 0, -40); // <- 3 Vertices: x1, y1, x2, y2, x3, y3
+
+                // Left Hand
+                fill(50, 255, 255);
+                ellipse(-84, -60, 50, 50);
+
+                // Right Hand
+                fill(50, 255, 255);
+                ellipse(84, -60, 50, 50);
+
+            // Text
+            fill(0, 0, 0);
+            // "THIS IS HUMAN."
+                // T
+                rect(-320, 180, 10, 40);
+                rect(-335, 180, 40, 10);
+                // H
+                rect(-280, 180, 10, 40);
+                rect(-280, 195, 40, 10);
+                rect(-250, 180, 10, 40);
+                // I
+                rect(-220, 180, 10, 40);
+                // S
+                ellipse(-170, 200, 45, 45);
+                fill(240, 240, 240);
+                ellipse(-170, 200, 25, 25);
+                rect(-162, 190, 15, 5);
+                rect(-192, 205, 15, 5);
+                fill(0, 0, 0);
+                rect(-190, 195, 40, 10);
+
+                // I
+                rect(-95, 180, 10, 40);
+                // S
+                ellipse(-45, 200, 45, 45);
+                fill(240, 240, 240);
+                ellipse(-45, 200, 25, 25);
+                rect(-37, 190, 15, 5);
+                rect(-67, 205, 15, 5);
+                fill(0, 0, 0);
+                rect(-65, 195, 40, 10);
+
+                // H
+                rect(30, 180, 10, 40);
+                rect(30, 195, 40, 10);
+                rect(60, 180, 10, 40);
+                // U
+                ellipse(110, 200, 45, 45);
+                fill(240, 240, 240);
+                ellipse(110, 200, 25, 25);
+                rect(88, 176, 44, 20);
+                fill(0, 0, 0);
+                rect(88, 180, 10, 20);
+                rect(122, 180, 10, 20);
+                // M
+                rect(152, 180, 40, 10);
+                rect(152, 180, 10, 40);
+                rect(167, 180, 10, 40);
+                rect(182, 180, 10, 40);
+                // A
+                ellipse(234, 200, 45, 45);
+                fill(240, 240, 240);
+                ellipse(234, 200, 25, 25);
+                rect(212, 205, 44, 18);
+                fill(0, 0, 0);
+                rect(212, 195, 44, 10);
+                rect(212, 195, 10, 25);
+                rect(246, 195, 10, 25);
+                // N
+                rect(276, 180, 10, 40);
+                ellipse(298, 200, 45, 45);
+                fill(240, 240, 240);
+                ellipse(298, 200, 25, 25);
+                rect(286, 200, 24, 20);
+                rect(276, 220, 44, 10);
+                fill(0, 0, 0);
+                rect(310, 200, 10, 20);
+
+                // .
+                ellipse(346, 214, 10, 10);
+        }
+    </script>
+</body>
+</html>

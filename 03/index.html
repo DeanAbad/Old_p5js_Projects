@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weird Mineral</title>
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #container {
+            margin: 10px;
+        }
+
+        canvas {
+            margin: 10px;
+            border: 2px solid black;
+        }
+    </style>
+    <script src="../lib/p5.js"></script>
+</head>
+<body>
+    <button onclick="go_back()">Go Back</button>
+
+    <script>
+        function go_back() {
+            window.history.back();
+        }
+    </script>
+    
+    <div id="container">
+        "Some weird mineral."
+    </div>
+    <script>
+        let rectAngle = 0;
+        let iW = innerWidth;
+        let iH = innerHeight;
+
+        function setup() {
+            createCanvas(600, 480, WEBGL);
+        }
+
+        function draw() {
+            background(240);
+
+            rotateY(rectAngle);
+            rotateZ(rectAngle * 0.2);
+            rotateX(rectAngle * 1.5);
+            
+            noFill();
+            beginShape();
+                fill(255, 255, 50);
+                vertex(0, -80);
+                fill(255, 50, 255);
+                vertex(60, 0);
+                fill(50, 255, 255);
+                vertex(0, 80);
+                vertex(-60, 0);
+            endShape(CLOSE);
+
+            rectAngle += 0.05;
+        }
+    </script>
+</body>
+</html>

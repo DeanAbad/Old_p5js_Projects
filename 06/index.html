@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Cube ver.1</title>
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            margin: 10px;
+            padding: 10px;
+        }
+        canvas {
+            margin: 10px 10px 10px 10px;
+            padding: 10px;
+        }
+    </style>
+    <script src="../lib/p5.js"></script>
+</head>
+<body>
+    <button onclick="go_back()">Go Back</button>
+
+    <script>
+        function go_back() {
+            window.history.back();
+        }
+    </script>
+    
+    <script>
+        let sz = 100
+
+        function setup() {
+            var cnv = createCanvas(400, 400, WEBGL)
+            angleMode(DEGREES)
+            cursor(CROSS)
+        }
+
+        function draw() {
+            background(10)
+
+            stroke(255)
+            line(-400, 0, 400, 0)
+            line(0, -400, 0, 400)  //<- Same as Godot; inverted y-axis
+
+            translate(mouseX - width/2, mouseY - height/2, 0)
+            rotateX((mouseY - height)*-1)
+            rotateY((mouseX - width)*-1)
+            normalMaterial()
+            stroke(255)
+            box(sz, sz)
+        }
+
+        function mouseWheel(event) {
+            sz += event.delta
+            return false
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Particles</title>
+    <script src="../lib/p5.js"></script>
+</head>
+<body>
+    <button onclick="go_back()">Go Back</button>
+
+    <script>
+        function go_back() {
+            window.history.back();
+        }
+    </script>
+	
+    <script type="text/javascript">
+    let n
+	let num
+
+	let xRng
+	let yRng
+
+	let xRN
+	let yRN
+
+	let txt
+	let bubbles = []
+
+	function setup() {
+	  var cnv = createCanvas(400, 400)
+	  cnv.id('particles')
+	  
+	  // Particles' num
+	  n = createSlider(0, 100, 100, 1)
+	  n.style('width', '400px')
+
+	  // Particles' x range
+	  xRng = createSlider(0, 5, 5, 1)
+	  xRng.style('width', '400px')
+	  
+	  // Particles' y range
+	  yRng = createSlider(0, 5, 5, 1)
+	  yRng.style('width', '400px')
+	  
+	  num = n.value()
+	  xRN = xRng.value()
+	  yRN = yRng.value()
+	  
+	  for(let i=0; i<num; i++){
+	    bubbles[i] = new Bubble(200, 200, random(5))
+	  }
+	}
+	function draw() {
+	  background(10)
+	  
+	  num = n.value()
+	  
+	  for(let i=0; i<num; i++){
+	    bubbles[i].move()
+	    bubbles[i].show()
+	  }
+	  
+	  txt = 'Particles!'
+	  textSize(50)
+	  fill(50)
+	  text(txt, 85, 20, 400, 400)
+	}
+	class Bubble {
+	  constructor(x, y, r){
+	    this.x = x
+	    this.y = y
+	    this.r = r
+	  }
+	  move(){
+	    xRN = xRng.value()
+	    yRN = yRng.value()
+	    this.x += random(-xRN, xRN)
+	    this.y += random(-yRN, yRN)
+	  }
+	  show(){
+	    stroke((-255, 255)+this.x, random(-255, 255)+this.x, random(-255, 255)+this.x)
+	    strokeWeight(4)
+	    fill(random(-255, 255)+this.x, random(-255, 255)+this.x, random(-255, 255)+this.x)
+	    ellipse(this.x, this.y, this.r * 2)
+	  }
+	}
+    </script>
+</body>
+</html>

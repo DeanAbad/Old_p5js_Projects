@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cube and Tori ver.1</title>
+    <script src="../lib/p5.js"></script>
+</head>
+<body>
+    <button onclick="go_back()">Go Back</button>
+
+    <script>
+        function go_back() {
+            window.history.back();
+        }
+    </script>
+    
+    <script>
+        let angX = 0;let angY = 0;let angZ = 0;
+
+        function setup() {
+            createCanvas(600, 480, WEBGL);
+            angleMode(DEGREES);
+        }
+
+        function draw() {
+            background(10, 10, 10);
+
+            fill(0, 100, 200);
+
+            stroke(50, 240, 240);
+            rotateX(angX/2);
+            rotateZ(angZ/2);
+            box(100, 100);
+
+            rotateX(angX);
+            rotateY(angY);
+            torus(100, 20);  // torus(ring radius, tube radius)
+
+            fill(0, 100, 200);
+            rotateX(angX*0.5);
+            torus(150, 25);
+
+            angX -= 0.5;angY += 1.5;angZ += 1;
+        }
+    </script>
+</body>
+</html>

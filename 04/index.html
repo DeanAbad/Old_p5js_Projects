@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flower Box</title>
+    <script src="../lib/p5.js"></script>
+</head>
+<body>
+    <button onclick="go_back()">Go Back</button>
+
+    <script>
+        function go_back() {
+            window.history.back();
+        }
+    </script>
+    
+    <script>
+        let boxSize = 300;
+        let angl = 0;
+        let balls = []
+        let ballNum = 20;
+
+        function setup() {
+        createCanvas(windowWidth, windowHeight, WEBGL);
+        angleMode(DEGREES);
+        for(let i=0; i<ballNum; i++) {
+            balls.push(new ball());
+        }
+        }
+
+        function draw() {
+        background(0);
+        noFill();
+        stroke('blue');
+        strokeWeight(3);
+        angl -= 0.1;
+        rotateY(angl);
+        box(boxSize);
+            for(let i=0; i<ballNum; i++) {
+            balls[i].move();
+            balls[i].display();
+            }
+        }
+
+        let ang2 = 0;
+
+        class ball {
+        constructor() {
+            this.x = random(width);
+            this.y = random(height);
+            this.zRange = height;
+            this.z = random(this.zRange);
+            this.valx = random(20);
+            this.valy = random(10);
+            this.valz = random(30);
+            this.size = random(2, 20);
+            this.c = color(random(255), random(255), random(255), 200);
+        }
+        
+        move() {
+            // Return num from 0 to 1
+            this.valx += 0.001;
+            this.valy += 0.012;
+            this.valz += 0.021;
+            
+            this.x = noise(this.valx)*width;
+            this.y = noise(this.valy)*height;
+            this.z = noise(this.valz)*this.zRange;
+        }
+        
+        display() {
+            push();
+            translate(this.x-width/2, this.y-height/2, this.z-this.zRange/2);
+            ang2 += 0.1;
+            rotateY(ang2);
+            fill(this.c);
+            stroke('white');
+            strokeWeight(0.5);
+            sphere(this.size);
+            let box_x = this.size*2+20;
+            let box_y = 5;
+            let box_z = 10;
+            let petal = 5;
+            let angle = 360/petal;
+            for(let i=0; i<petal; i++) {
+                rotate(angle);
+                box(box_x, box_y, box_z);
+            }
+            pop();
+        }
+        }
+    </script>
+</body>
+</html>

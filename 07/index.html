@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terrain Noise Oscillation</title>
+    <script src="../lib/p5.js"></script>
+</head>
+<body>
+    <button onclick="go_back()">Go Back</button>
+
+    <script>
+        function go_back() {
+            window.history.back();
+        }
+    </script>
+    
+    <script type="text/javascript">
+        var terrainValues = []
+        var mult = 50
+        var xoff = 0
+        var yoff = 0
+        let slider;
+        
+        function setup(){
+            createCanvas(500, 500, WEBGL)
+            angleMode(DEGREES)
+            slider = createSlider(0, 1, 0, 0.01)
+            slider.position(5, 10)
+            slider.style('width', '500px')
+        }
+
+        function draw(){
+            let inc = slider.value()
+            for(var y=0; y<60; y++){
+                terrainValues.push([])
+                xoff = 0
+                for(var x=0; x<60; x++){
+                    terrainValues[y][x] = map(noise(xoff, yoff), 0, 1, -mult, mult)
+                    xoff += inc
+                }
+                yoff += inc
+            }
+
+            background(0)
+
+            stroke(255)
+            noFill()
+
+            rotateX(65)
+            translate(-width/2, -height/2)
+            for(var y=0; y<60; y++){
+                beginShape(TRIANGLE_STRIP)
+                for(var x=0; x<60; x++){
+                    fill(50, 50, 240)
+                    vertex(x*10, y*10, terrainValues[y][y])
+                    fill(50, 240, 240)
+                    vertex(x*10, (y+1)*10, terrainValues[y][x])
+                }
+                endShape()
+            }
+        }
+    </script>
+</body>
+</html>

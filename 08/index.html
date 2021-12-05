@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2D Grid by 2D Array ver.1</title>
+    <script src="../lib/p5.js"></script>
+</head>
+<body>
+    <button onclick="go_back()">Go Back</button>
+
+    <script>
+        function go_back() {
+            window.history.back();
+        }
+    </script>
+    
+    <script type="text/javascript">
+        var cols = 10
+        var rows = 10
+
+        function setup(){
+            createCanvas(300, 300)
+        }
+        function draw(){
+            background(50)
+
+            for(var i=0; i<cols; i++){
+                for(var j=0; j<rows; j++){
+                    var x = i * 30
+                    var y = j * 30
+
+                    stroke(0)
+                    fill(255)
+                    rect(x, y, 30)
+                }
+            }
+        }
+    </script>
+</body>
+</html>

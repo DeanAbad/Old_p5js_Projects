@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cube and Tori ver.2</title>
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            margin: 10px;
+            padding: 10px;
+        }
+        canvas {
+            margin: 10px 10px 10px 10px;
+            padding: 10px;
+        }
+    </style>
+    <script src="../lib/p5.js"></script>
+</head>
+<body>
+    <button onclick="go_back()">Go Back</button>
+
+    <script>
+        function go_back() {
+            window.history.back();
+        }
+    </script>
+    
+    <script>
+        var angX = 0, angY = 0, angZ = 0, trnZ = 201;
+
+        function setup() {
+        createCanvas(600, 480, WEBGL);
+        angleMode(DEGREES);
+        }
+
+        function draw() {
+        background(10, 10, 10);
+
+        ambientLight(50, 50, 50);
+        directionalLight(255, 255, 255, 0, -600, 0);
+        
+        translate(mouseX - 300, mouseY - 300, trnZ);
+        translate(0, 0, 0);
+        
+        fill(0, 100, 200);
+        noStroke();
+        rotateX(angX);
+        rotateY(angY);
+        torus(100, 20);
+
+        rotateX(angX * 0.5);
+        torus(150, 25);
+        
+        normalMaterial();
+        stroke(50, 240, 240);
+        rotateX(angX / 2);
+        rotateZ(angZ / 2);
+        box(100, 100);
+
+        angX -= 0.5;  angY += 1.5;  angZ += 1;
+        }
+
+        function mouseWheel(event) {
+        trnZ -= event.delta;
+        return false;
+        }
+    </script>
+</body>
+</html>

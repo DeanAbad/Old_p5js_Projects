@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Cube ver.2</title>
+    <script src="../lib/p5.js"></script>
+</head>
+<body>
+    <button onclick="go_back()">Go Back</button>
+
+    <script>
+        function go_back() {
+            window.history.back();
+        }
+    </script>
+    
+    <script>
+        var sz = 40
+        var cols = 10
+        var rows = 10
+        var arry = []
+
+        let x
+        let y
+
+        function setup(){
+            var cnv = createCanvas(400, 400, WEBGL)
+            cnv.parent(document.body)
+            cnv.id('cnvContainer')
+            angleMode(DEGREES)
+            cursor(CROSS)
+        }
+        
+        function draw(){
+            background(10)
+            
+            stroke(255)
+            line(-400, 0, 400, 0)
+            line(0, -400, 0, 400)  //<- Same as Godot; inverted y-axis
+            
+            rotateX((mouseY - height)*-1)
+            rotateY((mouseX - width)*-1)
+            stroke(255)
+            normalMaterial()
+            for(var i=0; i<cols; i++){
+                arry[i] = []
+                for(var j=0; j<rows; j++){
+                let cube = box(sz)
+                arry[i][j] = cube
+                }
+            }
+        }
+
+        function mouseWheel(event) {
+            sz -= event.delta
+            return false
+        }
+    </script>
+</body>
+</html>

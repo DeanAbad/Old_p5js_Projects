@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotating Panel ver.2</title>
+    <link rel="stylesheet" href="/res/src/css/projStyle.css">
+    <script src="../lib/p5.js"></script>
+</head>
+<body>
+    <button onclick="go_back()">Go Back</button>
+
+    <script>
+        function go_back() {
+            window.history.back();
+        }
+    </script>
+    
+    <script>
+        var ang = 0, prt = 0;
+
+        function setup() {
+        createCanvas(400, 400, WEBGL);
+        angleMode(DEGREES);
+        stroke(10);
+        strokeWeight(10);
+        }
+
+        function draw() {
+        background(70, 150, 255);
+        
+        ambientLight(255, 255, 255);
+        directionalLight(255, 255, 255, 0, 0, -100);
+        
+        translate(mouseX - 200, mouseY - 200, 0);
+        
+        rotateY(ang);
+        
+        fill(150, 50, 50);
+        rect(-145, prt-145, 150, 150);
+        
+        fill(50, 150, 50);
+        rect(0, -145, 150, 150);
+        
+        fill(50, 50, 150);
+        rect(-145, 0, 150, 150);
+        
+        fill(150, 150, 50);
+        rect(0, 0, 150, 150);
+        
+        ang += 1;
+        }
+
+        function mouseWheel(event) {
+        prt += event.delta * 10;
+        return false;
+        }
+    </script>
+</body>
+</html>
